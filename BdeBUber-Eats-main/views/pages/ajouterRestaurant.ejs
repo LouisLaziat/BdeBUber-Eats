@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>BdeBUber | Ajouter Restaurant</title>
+    <link rel="icon" href="/public/icons/jlygADMIN.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+
+
+
+
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="../../public/css/ajouterRestaurant.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin w-100 m-auto">
+        <form action="/ajouter_resto" method="post">
+            <div class="py-5 text-center">
+                <h1>BdebUber <span class="text-uber"> Eats </span> <span style="color:blueviolet"> Admin</h1>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="resto_name" name="resto_name" required>
+                <label for="resto_name">Nom du restaurant</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="resto_address" name="resto_address" required>
+                <label for="resto_address">Adresse</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="tel" class="form-control" id="resto_phone_number" name="resto_phone_number" required>
+                <label for="resto_phone_number">Numéro de téléphone</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="resto_email" name="resto_email" required>
+                <label for="resto_email">Adresse courriel</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="site_web" name="site_web" required>
+                <label for="site_web">Site web</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="time" class="form-control" id="resto_opening_hours" name="resto_opening_hours" required>
+                <label for="resto_opening_hours">Heure d'ouverture</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="time" class="form-control" id="resto_closing_hours" name="resto_closing_hours" required>
+                <label for="resto_closing_hours">Heure de fermeture</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="resto_city" name="resto_city" required>
+                <label for="resto_city">Ville</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="critique" class="form-label"></label>
+                <select class="form-select" id="critique" name="critique" required>
+                    <option value="" selected disabled>Choisissez une note</option>
+                    <option value="1">1 étoile</option>
+                    <option value="2">2 étoiles</option>
+                    <option value="3">3 étoiles</option>
+                    <option value="4">4 étoiles</option>
+                    <option value="5">5 étoiles</option>
+                </select>
+                <div class="invalid-feedback">
+                    Veuillez choisir une note.
+                </div>
+            </div>
+
+
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" id="boutonAjouter">Ajouter</button>
+
+        </form>
+    </main>
+
+    <script src="../../public/js/ajout-resto.js"></script>
+
+</body>
+
+</html>

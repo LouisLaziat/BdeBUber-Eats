@@ -1,0 +1,181 @@
+<%- include('../partials/menuHeader.ejs') %>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/"
+    >BdebUber <span class="logo-color">Eats</span></a
+  >
+  <span class="ml-auto texte-droite" id="nameOnNav"
+    ><a
+      href="#"
+      id="cart-icon"
+      data-toggle="modal"
+      data-target="#cart-modal"
+      onclick="updateCartModal()"
+      ><img
+        src="../../public/images/cartIcon.png"
+        alt=""
+        width="30"
+        height="30"
+      /> </a
+  ></span>
+</nav>
+
+<div class="container">
+  <h1><%= restaurant.menu_name %></h1>
+  <% if (restaurant.menu_description) { %>
+  <p><%= restaurant.menu_description %></p>
+  <% } %>
+
+  <div class="row">
+    <% restaurant.item_list.forEach(function(item) { %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= item.item_name %></h5>
+          <p class="card-text">
+            $<span class="item-price" data-item-price="<%= item.item_prix %>">
+              <%= item.item_prix %>.00
+            </span>
+            CAD
+          </p>
+          <button
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#item-modal-<%= item._id %>"
+            style="color: white; background-color: green"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="item-modal-<%= item._id %>"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="item-modal-<%= item._id %>-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="item-modal-<%= item._id %>-label">
+              <%= item.item_name %>
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><%= item.item_description %></p>
+            <div class="form-group">
+              <label for="item-<%= item._id %>-quantity">Quantity:</label>
+              <input
+                type="number"
+                id="item-<%= item._id %>-quantity"
+                name="item-<%= item._id %>-quantity"
+                class="form-control item-quantity"
+                value="1"
+                min="1"
+                max="<%= item.item_quantity %>"
+                data-item-price="<%= item.item_prix %>"
+                data-item-id="<%= item._id %>"
+                onchange="changePrice(this)"
+              />
+            </div>
+            <p>
+              Price: $<span
+                class="item-price"
+                data-item-price="<%= item.item_prix %>"
+                data-item-id="<%= item._id %>"
+              >
+                <%= item.item_prix %>.00
+              </span>
+              CAD
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              class="btn btn-primary add-to-cart"
+              onclick="addToCart(this)"
+              data-item-id="<%= item._id %>"
+              data-item-name="<%= item.item_name %>"
+              data-item-price="<%= item.item_prix %>"
+              data-item-quantity="<%= item.item_quantity %>"
+              data-dismiss="modal"
+              style="color: white; background-color: green"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+  <div
+    class="modal fade"
+    id="cart-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="cart-modal-label"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cart-modal-label">Shopping Cart</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group" id="cart-item-list"></ul>
+          <p id="cart-total" class="mt-2">Total: $0.00</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary btn-outline-danger"
+            id="clear-cart-btn"
+          >
+            Clear Cart
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="checkout-button"
+            style="color: white; background-color: green"
+            onclick="proceedToCheckout()"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../public/js/menu.js"></script>
+<script src="../../public/js/navbar.js"></script>
+<%- include('../partials/menuFooter.ejs') %>

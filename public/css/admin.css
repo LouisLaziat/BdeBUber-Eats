@@ -1,0 +1,38 @@
+@font-face {
+    font-family:'UberMoveMedium' ;
+    src: url(/public/fonts/UberMoveMedium.otf);
+}
+
+body {
+    background-color: black;
+}
+
+h1{
+    font-family: "UberMoveMedium";
+}
+
+.container.mt-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .btn {
+    font-family: "UberMoveMedium";
+    margin-top: 15%;
+    margin-bottom: 2rem;
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.5rem 3rem;
+    background-color: darkgreen;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #006400;
+  }
+  

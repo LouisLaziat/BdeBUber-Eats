@@ -1,0 +1,152 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    z-index: 1;
+    /* Sit on top */
+
+    float: left 50%;
+    margin-top: 10%;
+
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+
+    display: flex;
+    flex-direction: column;
+
+
+    text-align: center;
+    max-height: 600px;
+    max-width: 600px;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: lightgray;
+
+    overflow-y: auto;
+}
+
+
+.btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px, 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+/* The Close Button */
+.close {
+    max-width: 600px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+}
+
+
+/*
+https://moderncss.dev/pure-css-custom-checkbox-style/
+*/
+
+input[type="checkbox"] {
+
+    background-color: #fff;
+    font: inherit;
+    color: blueviolet;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    margin-right: 4%;
+
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: CanvasText;
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+}

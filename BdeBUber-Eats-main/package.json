@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "paypal": "^1.0.1",
+    "stripe": "^12.3.0",
+    "winston": "^3.8.2"
+  }
+}

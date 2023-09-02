@@ -1,0 +1,125 @@
+<%- include('../partials/mapHeader.ejs') %>
+
+<script src="../../public/js/deconnexion.js"></script>
+<script src="../../public/js/admin.js"></script>
+<div name="Footer" class="footerDiv">
+  <h1 style="color: white">BdebUber</h1>
+  <span style="color: green"> Eats</span>
+  <button
+    style="
+      position: absolute;
+      top: 3%;
+      right: 3%;
+      z-index: 1000;
+      background-color: red;
+      border: 1px solid black;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+    "
+    onclick="disconnect()"
+  >
+    <b style="color: white">Déconnection</b>
+  </button>
+
+  <div id="map" style="height: 100vh; width: 100%"></div>
+  <button
+    style="
+      position: absolute;
+      top: 3%;
+      right: 10%;
+      z-index: 1000;
+      background-color: lightblue;
+      border: 1px solid black;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+    "
+    onclick="displayModal()"
+  >
+    <b>Connection Admin</b>
+  </button>
+</div>
+
+<input
+  type="text"
+  name="query"
+  id="search-input"
+  placeholder="Search for restaurants"
+  class="search-input"
+/>
+
+<div class="passwordModal" id="passwordModal" style="height: 100px">
+  <div class="modal-content" style="height: 50 px">
+    <p style="position: relative; left: 5%; height: 10px">
+      Enter Admin Password
+    </p>
+    <input type="password" id="admin-password" />
+    <button id="submit" class="modal-btn" onclick="promptAdmin()">
+      Submit
+    </button>
+  </div>
+</div>
+
+<script>
+    let popupContent;
+    const map = L.map("map").setView([45.5019, -73.5674], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    function createPopupContent(resto) {
+      let popupContent = `
+      <p>Name: ${resto.resto_name}</p>
+      <p>Address: ${resto.resto_address}</p>
+      <p>Phone: ${resto.resto_phone_number}</p>
+      <p>Email: ${resto.resto_email}</p>
+      <p>Menu de <a href="/menu/${resto.resto_name}" target="_blank">${resto.resto_name}</a></p>
+      <p>Hours: ${resto.resto_heures}</p>
+      <p>City: ${resto.resto_city}</p>
+      <p>Site Web: <a href="${resto.site_web}" target="_blank">${resto.site_web}</a></p>
+      <p>Critique: ${resto.critique} ⭐</p>
+    `;
+      return popupContent;
+    }
+
+    <% mapData.forEach(marker => { %>
+      ("Adding for: " + <%=marker.latitude %> + <%= marker.longitude %>);
+    popupContent = createPopupContent(JSON.parse(`{"resto_name":"<%=marker.restaurant.resto_name%>","resto_address":"<%=marker.restaurant.resto_address%>","resto_phone_number":"<%=marker.restaurant.resto_phone_number%>","resto_email":"<%=marker.restaurant.resto_email%>","site_web":"<%=marker.restaurant.site_web%>","resto_heures":"<%=marker.restaurant.resto_heures%>","resto_city":"<%=marker.restaurant.resto_city%>","critique":<%=marker.restaurant.critique%>}`));
+    L.marker([<%= marker.latitude %>, <%= marker.longitude %>]).addTo(map).bindPopup(popupContent);
+  <% }); %>
+
+  const searchInput = document.getElementById('search-input');
+
+    searchInput.addEventListener('keypress', (e) => {
+      let textContent = "";
+      if (e.key === 'Enter' && searchInput.value !== "") {
+        removeAllMarkers();
+        const query = searchInput.value;
+        const response = fetch('mapRequest', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ query })
+        }).then(async (res) => {
+          let text = await res.text();
+          let data = JSON.parse(text);
+          data.forEach(marker => {
+            textContent = createPopupContent(JSON.parse(`{"resto_name":"${marker.restaurant.resto_name}","resto_address":"${marker.restaurant.resto_address}","resto_phone_number":"${marker.restaurant.resto_phone_number}","resto_email":"${marker.restaurant.resto_email}","site_web":"${marker.restaurant.site_web}","resto_heures":"${marker.restaurant.resto_heures}","resto_city":"${marker.restaurant.resto_city}","critique":${marker.restaurant.critique}}`));
+            L.marker([marker.latitude, marker.longitude]).addTo(map).bindPopup(textContent);
+          });
+        })
+      }
+    })
+
+    function removeAllMarkers() {
+      map.eachLayer((layer) => {
+        if (layer instanceof L.Marker) {
+          map.removeLayer(layer);
+        }
+      });
+    }
+</script>
+<%- include('../partials/mapFooter.ejs') %>

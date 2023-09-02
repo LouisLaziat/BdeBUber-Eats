@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="../../public/icons/icon.ico" />
+
+    <title>Remerciement</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      #heure_arrivee,
+      #heure_arrivee_tardive,
+      #numero_commande {
+        font-weight: bold;
+      }
+
+      .p-commande {
+        color: rgb(92, 181, 67);
+        font-weight: bold;
+      }
+
+      img {
+        border-radius: 15px;
+        box-shadow: 3px 2px 10px rgb(81, 125, 81);
+      }
+
+      body {
+        padding-top: 5rem;
+      }
+
+      .starter-template {
+        padding-top: 3rem;
+        text-align: center;
+      }
+
+      .texte-droite {
+        text-align: right;
+        color: white;
+      }
+
+      .ml-auto {
+        margin-left: auto !important;
+      }
+
+      .logo-color {
+        color: #198754;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#"
+        >BdebUber <span class="logo-color">Eats</span></a
+      >
+      <span class="ml-auto texte-droite" id="name_on_nav_bar"></span>
+    </nav>
+
+    <main role="main" class="container">
+      <div class="starter-template">
+        <!-- source de l'image : https://merchants.ubereats.com/ca/en/resources/articles/six-effective-ways-to-thank-customers/ -->
+        <img
+          src="../../public/images/immage-commande.PNG"
+          alt="immage_commande"
+        />
+
+        <h1><br />Merci d'avoir passé votre<br />commande avec BdebUber !</h1>
+        <p>
+          <br />Numéro de commande:
+          <span id="numero_commande"> <%= numeroCommande %> </span>
+        </p>
+
+        <p>Recevez un reçu de votre commande par courriel :</p>
+
+        <button type="button" class="btn btn-success" onclick="envoyerEmail()">
+          Recevoir
+        </button>
+      </div>
+    </main>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>'
+        );
+    </script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+    <script src="../../public/js/remerciement.js"></script>
+    <!-- <footer class="text-center bg-light py-3">
+      <p>© 2023 BdeBUber - Tous droits réservés.</p>
+    </footer> -->
+  </body>
+</html>

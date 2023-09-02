@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.108.0">
+  <title>BdeBUber | Ajouter Restaurant</title>
+  <link rel="stylesheet" href="../../public/css/addMenu.css">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+  <link rel="icon" href="/public/icons/jlygADMIN.ico">
+  <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../public/css/ajouterRestaurant.css" rel="stylesheet">
+</head>
+
+<body class="text-center" onload="fetchRestaurantOptions()">
+  <main class="form-signin w-100 m-auto">
+
+    <div class="py-5 text-center">
+      <h1>BdebUber <span class="text-uber"> Eats </span> <span style="color:blueviolet"> Admin</h1>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="MenuName" name="MenuName" required>
+      <label for="MenuName">Nom du Menu</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="MenuDescription" name="MenuDescription" required>
+      <label for="MenuDescription">Description Menu</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <select name="MenuRestaurant" id="MenuRestaurant" class="form-control">
+        <option value="">Chargement des options...</option>
+      </select>
+      <label for="MenuRestaurant">NomRestaurant</label>
+    </div>
+    <button onclick="popupForum()" class="W-100 btn btn-lg btn-primary">Nouveau Item</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="CreateMenu()">Ajouter Menu</button>
+  </main>
+  <div id="modal" class="modal">
+    <form>
+      <ul id="modal-content" class="modal-content">
+      </ul>
+      <button class="w-100 btn btn-lg btn-primary close" id="closeModal" onclick="CloseModal()">Fermer</button>
+    </form>
+  </div>
+</body>
+<script src="../../public/js/addMenu.js"></script>
+</html>

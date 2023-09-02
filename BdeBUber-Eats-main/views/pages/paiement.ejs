@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.108.0" />
+  <title>Page paiement</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script src="https://js.stripe.com/v3/" async></script>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AfrDRYZTq6JDBUq9Pt-KX8LdceAmknZEPdc5UiIyU9iwsPivAf9yQinMhNDAz7tCvMXBwr6KQTy_hgkz&currency=CAD&disable-funding=card"></script>
+
+  <link rel="icon" type="image/x-icon" href="../../public/icons/icon.ico" />
+
+  <style>
+    body {
+      padding-top: 5rem;
+    }
+
+    .starter-template {
+      padding-top: 3rem;
+      text-align: center;
+    }
+
+    .texte-droite {
+      text-align: right;
+      color: white;
+    }
+
+    .ml-auto {
+      margin-left: auto !important;
+    }
+
+    .logo-color {
+      color: #198754;
+    }
+
+    #cart-icon i {
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    #cart-span span {
+      width: max-content !important;
+      height: max-content !important;
+    }
+  </style>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/" />
+
+  <link href="../../public/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      height: 3rem;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: solid rgba(0, 0, 0, 0.15);
+      border-width: 1px 0;
+      box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+        inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -0.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand fw-bold py-1" href="/" style="text-indent: 10%; font-size: 200%; ">BdebUber <span
+        class="logo-color">Eats</span></a>
+    <span class="ml-auto texte-droite fw-bold py-1" style="font-size: 150%;" id="nameOnNav"></span>
+  </nav>
+
+  <!-- Custom styles for this template -->
+  <link href="../../public/css/paiement.css" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h1>BdebUber <span class="text-uber"> Eats </span></h1>
+      </div>
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Votre panier</span>
+            <span id="cart-size" class="badge bg-primary rounded-pill"></span>
+          </h4>
+
+          <ul id="product-list" class="list-group mb-3"></ul>
+
+
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Adresse de livraison</h4>
+
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Prénom</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" required />
+              <div class="invalid-feedback">
+                Le champ prénom est vide ou invalide.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Nom de famille</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" required />
+              <div class="invalid-feedback">
+                Le champ nom de famille est vide ou invalide.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Adresse courriel</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" />
+              <div class="invalid-feedback">
+                Le champ courriel est vide ou invalide.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Adresse</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required />
+              <div class="invalid-feedback">
+                Le champ adresse est vide ou invalide.
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">Pays</label>
+              <select class="form-select" id="country" required>
+                <option value="" disabled selected>Choisir...</option>
+                <option>Canada</option>
+              </select>
+              <div class="invalid-feedback">Veuillez choisir un pays</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">Province</label>
+              <select class="form-select" id="state" required>
+                <option value="" disabled selected>Choisir...</option>
+                <option>Alberta</option>
+                <option>Colombie-Britannique</option>
+                <option>Île-du-Prince-Édouard</option>
+                <option>Manitoba</option>
+                <option>Nouveau-Brunswick</option>
+                <option>Nouvelle-Écosse</option>
+                <option>Nunavut</option>
+                <option>Ontario</option>
+                <option>Quebec</option>
+                <option>Saskatchewan</option>
+                <option>Terre-Neuve-et-Labrador</option>
+                <option>Territoires du Nord-Ouest</option>
+                <option>Yukon</option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez choisir une province
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Code postal</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required />
+              <div class="invalid-feedback">
+                Le champ code postal est vide ou invalide.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4" />
+          <div id="paypal"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 BdebUberEats</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <script src="../../public/js/bootstrap.bundle.min.js"></script>
+  <script src="../../public/js/navbar.js"></script>
+
+  <script src="../../public/js/paiement.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+  "editor.autoClosingBrackets": "languageDefined",
+  "html.autoClosingTags": false,
+  "cSpell.words": ["bdebuber", "heures", "Resto"],
+  "editor.formatOnSave": true,
+  "html.validate.scripts": false
+}

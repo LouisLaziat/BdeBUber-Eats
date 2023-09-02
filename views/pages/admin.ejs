@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="icon" href="/public/icons/jlygADMIN.ico">
+    <link rel="stylesheet" href="../../public/css/admin.css" />
+</head>
+
+<body>
+
+    <h1 class="float-md-start mb-0 titre" style="color: white;">
+        BdebUber <span style="color: darkgreen;"> Eats </span>
+        <span style="color:blueviolet"> Admin
+    </h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" onclick="loadInsertionRestaurant()">Insertion Restaurant</button>
+                    <button class="btn btn-secondary" type="button" onclick="loadInsertionMenu()">Insertion Menu</button>
+                    <button class="btn btn-success" type="button" onclick="loadInsertionItem()">Insertion Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button style="
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+  " onclick="disconnect()">
+        <b style="color: white;">Déconnexion</b>
+    </button>
+
+    <script src="/public/js/deconnexion.js"></script>
+    <script src="../../public/js/admin.js"></script>
+</body>
+
+</html>

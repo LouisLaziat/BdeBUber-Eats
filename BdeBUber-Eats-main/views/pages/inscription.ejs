@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>BdeBUber | Inscription</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/public/css/inscription.css" />
+    <link rel="icon" type="image/x-icon" href="../../public/icons/icon.ico" />
+  </head>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <div>
+      <img src="/public/images/foodimg.svg" class="stretch-img" />
+    </div>
+
+    <div class="container">
+      <main class="form-signin w-90 m-auto">
+        <div class="form-group">
+          <h1 class="thumbnail">Inscription</h1>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="prename">Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="prename"
+            name="prename"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Adresse</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            name="address"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="city">Ville</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Numéro de téléphone</label>
+          <input
+            type="number"
+            class="form-control"
+            id="phone"
+            name="phone"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirmation mot de passe</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            name="confirmPassword"
+            required
+          />
+        </div>
+        <p>
+          <label for="connection">(Vous avez déjà un compte?)</label>
+          <a href="/connexion" class="a-inscription-link" id="connection"
+            >Se connecter</a
+          >
+        </p>
+        <div>
+          <button
+            onclick="sendInscriptionRequest()"
+            class="btn btn-primary add-to-cart"
+            style="color: white; background-color: green"
+          >
+            S'inscrire
+          </button>
+          <p style="color: red" id="errorTextBox"></p>
+        </div>
+      </main>
+    </div>
+    <script src="../../public/js/inscription.js"></script>
+  </body>
+</html>

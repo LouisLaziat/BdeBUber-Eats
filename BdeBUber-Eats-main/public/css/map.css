@@ -1,0 +1,95 @@
+#search-input {
+  position: absolute;
+  top: 15px;
+  left: 70px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  width: 300px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  color: #444;
+  z-index: 1000;
+}
+
+#search-input:focus {
+  outline: none;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.passwordModal {
+  display: none;
+  z-index: 2000;
+  top: 10%;
+  left: 50%;
+  max-width: 12%;
+  height: 11%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  background-color: white;
+  border-style: solid;
+}
+
+.modal-content {
+  font-family: 'UberMove';
+  position: relative;
+  left: 10%;
+  width: 90%;
+
+}
+
+.modal-btn {
+  left: 27%;
+  position: relative;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  background-color: lightblue;
+  color: black;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-family: 'UberMove';
+}
+
+input[type="password"] {
+  border: solid;
+}
+
+@font-face {
+  font-family: 'UberMove';
+  src: url("../fonts/UberMoveMedium.otf");
+}
+
+.footerDiv {
+  background: black;
+  top: 0%;
+  height: 8%;
+  width: 100%;
+  z-index: 3000;
+}
+
+.search-input {
+  margin-top: 5%;
+  position: absolute;
+}
+
+h1 {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+  font-family: 'UberMove';
+  left: 10px;
+}
+
+span {
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  font-family: 'UberMove';
+  font-size: 35;
+  margin-left: 13px;
+}
